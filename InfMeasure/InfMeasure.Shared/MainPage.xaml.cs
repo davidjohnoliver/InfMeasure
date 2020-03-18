@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -25,6 +26,19 @@ namespace InfMeasure
 		public MainPage()
 		{
 			this.InitializeComponent();
+
+			this.Loaded += MainPage_Loaded;
+		}
+		
+		private void MainPage_Loaded(object sender, RoutedEventArgs e)
+		{
+			HostBorder.Child = new InvalidatedChild(InvalidateChildView) { Background = new SolidColorBrush(Colors.Tomato) };
+		}
+
+		private void SetDimensions(object sender, RoutedEventArgs e)
+		{
+			InvalidateChildView.ChildWidth = 120;
+			InvalidateChildView.ChildHeight = 72;
 		}
 	}
 }
